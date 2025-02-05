@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>( ' _ ' )</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #000;
+            overflow: hidden;
+        }
+        .camera-feed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        h1 {
+            color: white;
+            font-size: 3em;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1>salom</h1>
+    <video id="camera" class="camera-feed" autoplay></video>
+
+    <script>
+        // Kamerani faollashtirish
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                const videoElement = document.getElementById('camera');
+                videoElement.srcObject = stream;
+            })
+            .catch(function(error) {
+                console.log('Kamera ishlatish mumkin emas:', error);
+            });
+    </script>
+</body>
+</html>
