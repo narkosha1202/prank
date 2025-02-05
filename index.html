@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>( ' _ ' )</title>
+    <title>Camera Test</title>
     <style>
         body {
             margin: 0;
@@ -11,38 +11,30 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #000;
+            background-color: black;
             overflow: hidden;
         }
-        .camera-feed {
-            position: absolute;
-            top: 0;
-            left: 0;
+        video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            z-index: -1;
-        }
-        h1 {
-            color: white;
-            font-size: 3em;
-            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <h1>salom</h1>
-    <video id="camera" class="camera-feed" autoplay></video>
+    <video id="camera" autoplay></video>
 
     <script>
+        const videoElement = document.getElementById('camera');
+
         // Kamerani faollashtirish
         navigator.mediaDevices.getUserMedia({ video: true })
             .then(function(stream) {
-                const videoElement = document.getElementById('camera');
+                // Streamni video elementiga bog'lash
                 videoElement.srcObject = stream;
             })
             .catch(function(error) {
-                console.log('Kamera ishlatish mumkin emas:', error);
+                console.error('Kamera ishlamayapti:', error);
             });
     </script>
 </body>
